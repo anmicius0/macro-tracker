@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/* 0. Self-hosted font */
+@font-face {
+	font-family: "Material Symbols Outlined";
+	src: url("/fonts/MaterialSymbolsOutlined.woff2") format("woff2");
+	font-weight: 100 700;
+	font-display: swap;
+	font-style: normal;
+}
+
+/* 1. Base Variables - Dark Mode Only */
+:root {
+	--font-sans-base:
+		"Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial,
+		sans-serif;
+	--font-mono-base: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+	--color-base-surface: oklch(12% 0 0);
+	--color-base-surface-container: oklch(16% 0 0);
+	--color-base-surface-variant: oklch(18% 0 0);
+
+	--color-base-on-surface: oklch(95% 0 0);
+	--color-base-on-surface-variant: oklch(72% 0 0);
+
+	--color-base-primary: oklch(95% 0 0);
+	--color-base-on-primary: oklch(15% 0 0);
+	--color-base-primary-container: oklch(20% 0 0);
+
+	--color-base-error: oklch(65% 0.18 25);
+	--color-base-on-error: oklch(18% 0.02 25);
+
+	--color-base-protein: oklch(72% 0.13 260);
+	--color-base-on-protein: oklch(15% 0.02 260);
+
+	--color-base-carbs: oklch(80% 0.11 180);
+	--color-base-on-carbs: oklch(15% 0.02 180);
+
+	--color-base-fats: oklch(76% 0.13 40);
+	--color-base-on-fats: oklch(15% 0.02 40);
+
+	--color-base-outline: oklch(25% 0 0);
+	--color-base-outline-variant: oklch(20% 0 0);
+
+	--color-base-background: oklch(10% 0 0);
+	--color-base-on-background: oklch(95% 0 0);
+}
+
+/* 2. Map to Tailwind 4 via @theme */
+@theme {
+	--font-sans: var(--font-sans-base);
+	--font-mono: var(--font-mono-base);
+
+	--ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+	--ease-ios: cubic-bezier(0.4, 0, 0.2, 1);
+
+	--color-surface: var(--color-base-surface);
+	--color-surface-container: var(--color-base-surface-container);
+	--color-surface-variant: var(--color-base-surface-variant);
+
+	--color-on-surface: var(--color-base-on-surface);
+	--color-on-surface-variant: var(--color-base-on-surface-variant);
+
+	--color-primary: var(--color-base-primary);
+	--color-on-primary: var(--color-base-on-primary);
+	--color-primary-container: var(--color-base-primary-container);
+
+	--color-error: var(--color-base-error);
+	--color-on-error: var(--color-base-on-error);
+
+	--color-protein: var(--color-base-protein);
+	--color-on-protein: var(--color-base-on-protein);
+
+	--color-carbs: var(--color-base-carbs);
+	--color-on-carbs: var(--color-base-on-carbs);
+
+	--color-fats: var(--color-base-fats);
+	--color-on-fats: var(--color-base-on-fats);
+
+	--color-outline: var(--color-base-outline);
+	--color-outline-variant: var(--color-base-outline-variant);
+
+	--color-background: var(--color-base-background);
+	--color-on-background: var(--color-base-on-background);
+}
+
+html {
+	height: 100%;
+	color-scheme: dark;
+}
+
+body {
+	background: var(--color-surface);
+	color: var(--color-on-surface);
+	font-family: var(--font-sans);
+	letter-spacing: -0.01em;
+	overflow-y: auto;
+	height: 100%;
+}
+
+.material-symbols-outlined {
+	font-family: "Material Symbols Outlined", sans-serif;
+	font-variation-settings:
+		"FILL" 0,
+		"wght" 200,
+		"GRAD" 0,
+		"opsz" 20;
+	font-size: 20px;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+.macro-strip {
+	height: 2px;
+	background: var(--color-outline);
+	position: relative;
+	overflow: hidden;
+}
+
+.macro-strip-fill {
+	position: absolute;
+	height: 100%;
+	left: 0;
+	top: 0;
+	width: 100%;
+	transform-origin: left;
+	transition: transform 0.2s var(--ease-out-quart);
+}
+
+.interaction-tap {
+	transition: transform 0.15s var(--ease-out-quart);
+}
+.interaction-tap:active:not(:disabled) {
+	transform: scale(0.98);
+}
+
+.skip-link {
+	position: fixed;
+	top: -100%;
+	left: 1rem;
+	z-index: 100;
+	padding: 0.5rem 1rem;
+	background: var(--color-primary);
+	color: var(--color-on-primary);
+}
+.skip-link:focus {
+	top: 1rem;
+}
